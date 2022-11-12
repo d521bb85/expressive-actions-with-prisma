@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  username  String   @unique @db.VarChar(24)
+  token     String   @unique @db.Char(128)
+}
+
+model Uploading {
+  id              Int      @id @default(autoincrement())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  pid             String   @unique @db.Char(32)
+  status          String
+  rejectionReason String?
+  name            String   @db.VarChar(255)
+  file            File?    @relation(fields: [fileId], references: [id], onDelete: Restrict)
+  fileId          Int?     @unique
+}
+
+model File {
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime   @default(now())
+  destination String?    @db.Text
+  size        Int?
+  mime        String?
+  uploading   Uploading?
+}
