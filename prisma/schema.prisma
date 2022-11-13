@@ -35,6 +35,6 @@ model File {
   createdAt   DateTime   @default(now())
   destination String?    @db.Text
   size        Int?
-  mime        String?
+  mimeType        String?
   uploading   Uploading?
 }

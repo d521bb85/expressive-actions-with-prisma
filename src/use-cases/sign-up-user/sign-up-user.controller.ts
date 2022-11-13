@@ -11,11 +11,11 @@ import { SignUpUserDTO, SignUpUserResponseDTO } from './sign-up-user.dto';
 import { SignUpUserError } from './sign-up-user.error';
 import { SignUpUserUseCase } from './sign-up-user.use-case';
 
-@Controller('user')
+@Controller()
 export class SignUpUserController {
   constructor(private signUpUserUseCase: SignUpUserUseCase) {}
 
-  @Post()
+  @Post('user')
   @UseInterceptors(new TransformResponseInterceptor(SignUpUserResponseDTO))
   async execute(@Body() { username }: SignUpUserDTO) {
     try {
