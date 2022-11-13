@@ -11,30 +11,26 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  username  String   @unique @db.VarChar(24)
-  token     String   @unique @db.Char(128)
+  id        Int         @id @default(autoincrement())
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  username  String      @unique @db.VarChar(24)
+  token     String      @unique @db.Char(128)
+  pploadings Uploading[]
 }
 
 model Uploading {
-  id              Int      @id @default(autoincrement())
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  pid             String   @unique @db.Char(32)
-  status          String
-  rejectionReason String?
-  name            String   @db.VarChar(255)
-  file            File?    @relation(fields: [fileId], references: [id], onDelete: Restrict)
-  fileId          Int?     @unique
-}
-
-model File {
-  id          Int        @id @default(autoincrement())
-  createdAt   DateTime   @default(now())
-  destination String?    @db.Text
-  size        Int?
-  mimeType        String?
-  uploading   Uploading?
+  id                     Int      @id @default(autoincrement())
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+  pid                    String   @unique @db.Char(32)
+  status                 String
+  rejectionReason        String?
+  rejectionReasonMessage String?
+  originalName           String   @db.VarChar(255)
+  effectiveName          String   @db.VarChar(288)
+  contentType            String
+  size                   Int
+  owner                  User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId                Int
 }

@@ -16,10 +16,10 @@ services:
 
   storage:
     image: minio/minio
-    command: server /data --console-address :9001
+    command: server /data --address :4000 --console-address :4010
     ports:
-      - 8090:8090
-      - 8091:8091
+      - 4000:4000
+      - 4010:4010
     environment:
       MINIO_ROOT_USER: root
       MINIO_ROOT_PASSWORD: KlQi8c9I

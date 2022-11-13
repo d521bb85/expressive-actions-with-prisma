@@ -1,16 +1,8 @@
-import { PrismaClient } from '@prisma/client';
 import { Module } from '@nestjs/common';
-import { useCases } from './use-cases';
+import { ConfigModule } from '@nestjs/config';
+import { AppModule } from '@/modules/app';
 
 @Module({
-  imports: [],
-  controllers: [...useCases.controllers],
-  providers: [
-    {
-      provide: PrismaClient,
-      useFactory: () => new PrismaClient()
-    },
-    ...useCases.providers
-  ]
+  imports: [ConfigModule.forRoot({ isGlobal: true }), AppModule]
 })
-export class AppModule {}
+export class MainModule {}

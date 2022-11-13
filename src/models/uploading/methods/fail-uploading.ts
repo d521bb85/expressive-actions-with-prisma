@@ -1,16 +1,16 @@
 import { PrismaClient, Uploading } from '@prisma/client';
 import { UploadingStatus } from '../constants';
 
-export interface CompleteUploadingOptions {
+export interface FailUploadingOptions {
   uploading: Uploading;
 }
 
-export function completeUploading(
+export function failUploading(
   prisma: PrismaClient,
-  { uploading }: CompleteUploadingOptions
+  { uploading }: FailUploadingOptions
 ) {
   return prisma.uploading.update({
     where: { id: uploading.id },
-    data: { status: UploadingStatus.Complete }
+    data: { status: UploadingStatus.Failed }
   });
 }

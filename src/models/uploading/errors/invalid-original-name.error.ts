@@ -1,5 +1,5 @@
 import { UploadingError } from './uploading.error';
 
-export class UnallowedMIMETypeError extends UploadingError {
+export class InvalidOriginalNameError extends UploadingError {
   public readonly name = this.constructor.name;
 }

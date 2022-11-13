@@ -1,6 +1,6 @@
 import { PrismaClient, User } from '@prisma/client';
 import { Injectable } from '@nestjs/common';
-import { signUpUser } from '../../models/user/methods';
+import { signUpUser } from '@/models/user/methods';
 import { UsernameIsTakenError } from './sign-up-user.error';
 
 export interface SignUpUserUseCaseOptions {

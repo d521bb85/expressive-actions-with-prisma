@@ -1,5 +1,5 @@
 export enum UploadingStatus {
   Pending = 'Pending',
-  Ready = 'Ready',
+  Complete = 'Complete',
   Failed = 'Failed'
 }
