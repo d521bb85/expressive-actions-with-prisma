@@ -1,9 +1,15 @@
 import { PrismaClient } from '@prisma/client';
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  ValidationPipe
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { FileModule } from '@/modules/file';
 import { useCases } from './use-cases';
 import { AuthMiddleware } from './auth';
+import { APP_PIPE } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -25,6 +31,10 @@ import { AuthMiddleware } from './auth';
   ],
   controllers: [...useCases.controllers],
   providers: [
+    {
+      provide: APP_PIPE,
+      useFactory: () => new ValidationPipe({ transform: true })
+    },
     {
       provide: PrismaClient,
       useFactory: () => new PrismaClient()

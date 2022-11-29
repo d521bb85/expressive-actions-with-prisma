@@ -13,11 +13,11 @@ import { AuthenticatedGuard, AuthenticatedUser } from '../../auth';
 import { UploadFileUseCase } from './upload-file.use-case';
 
 @Controller()
-@UseGuards(AuthenticatedGuard)
 export class UploadFileController {
   constructor(private uploadFileUseCase: UploadFileUseCase) {}
 
   @Post('uploadings')
+  @UseGuards(AuthenticatedGuard)
   @UseInterceptors(FileInterceptor('file'))
   async execute(
     @AuthenticatedUser() user: User,

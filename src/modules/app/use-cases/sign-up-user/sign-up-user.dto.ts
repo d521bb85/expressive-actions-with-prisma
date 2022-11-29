@@ -7,7 +7,7 @@ export class SignUpUserDTO {
 @Exclude()
 export class SignUpUserResponseDTO {
   @Expose()
-  createdAt: Date;
+  createdAt: string;
 
   @Expose()
   username: string;

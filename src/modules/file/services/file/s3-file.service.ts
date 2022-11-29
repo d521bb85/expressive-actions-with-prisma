@@ -2,7 +2,7 @@ import { S3 } from '@aws-sdk/client-s3';
 import { Inject, Injectable } from '@nestjs/common';
 import { FileModuleOptions } from '../../interfaces';
 import { FILE_MODULE_OPTIONS_TOKEN } from '../../constants';
-import { FileService, UploadFileOptions } from './file.service';
+import { BuildFileURL, FileService, UploadFileOptions } from './file.service';
 
 @Injectable()
 export class S3FileService implements FileService {
@@ -27,5 +27,9 @@ export class S3FileService implements FileService {
       ContentType: contentType,
       ACL: 'public-read'
     });
+  }
+
+  buildFileURL({ path }: BuildFileURL): string {
+    return `${this.publicBaseURL}/${path}`;
   }
 }

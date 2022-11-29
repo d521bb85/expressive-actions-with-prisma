@@ -1,13 +1,13 @@
 import { Prisma, User } from '@prisma/client';
 import { UploadingStatus } from '../constants';
 
-export interface CompleteUploadingsOwnedBy {
+export interface CompleteUploadingOwnedBy {
   owner: User;
 }
 
-export function completeUploadingsOwnedBy({
+export function filterCompleteUploadingOwnedBy({
   owner
-}: CompleteUploadingsOwnedBy): Prisma.UploadingWhereInput {
+}: CompleteUploadingOwnedBy): Prisma.UploadingWhereInput {
   return {
     owner: { id: owner.id },
     status: UploadingStatus.Complete

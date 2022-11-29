@@ -7,8 +7,8 @@ import {
 } from '@nestjs/common';
 import { TransformResponseInterceptor } from '@/shared/interceptors/transform-response';
 import { UserError } from '@/models/user/errors';
-import { SignUpUserDTO, SignUpUserResponseDTO } from './sign-up-user.dto';
 import { SignUpUserError } from './sign-up-user.error';
+import { SignUpUserDTO, SignUpUserResponseDTO } from './sign-up-user.dto';
 import { SignUpUserUseCase } from './sign-up-user.use-case';
 
 @Controller()
